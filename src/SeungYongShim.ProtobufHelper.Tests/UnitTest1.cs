@@ -12,9 +12,9 @@ namespace SeungYongShim.ProtobufHelper.Tests
         [Fact]
         public void InsertType()
         {
-            var knownTypes = new ProtoKnownTypes(new[] { typeof(KafkaEvent) });
+            var knownTypes = new ProtoKnownTypes();
 
-            var @event = new KafkaEvent
+            var @event = new Event
             {
                 TraceId = "abcdefg",
                 Body = Any.Pack(from x in new Sample { ID = "abcdefg" }
@@ -25,8 +25,8 @@ namespace SeungYongShim.ProtobufHelper.Tests
             var any = JsonSerializer.Deserialize<AnyJson>(message);
             var a = any.ToAny();
 
-            var parsedEvent = a.Unpack<KafkaEvent>();
-            var parsedEvent2 = knownTypes.Unpack(a) as KafkaEvent;
+            var parsedEvent = a.Unpack<Event>();
+            var parsedEvent2 = knownTypes.Unpack(a) as Event;
             var parsedSample = parsedEvent.Body.Unpack<Sample>();
             var parsedSample2 = knownTypes.Unpack(parsedEvent2.Body);
             parsedEvent.Should().Be(parsedEvent2);

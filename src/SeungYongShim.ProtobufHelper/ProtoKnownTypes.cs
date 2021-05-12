@@ -12,26 +12,24 @@ namespace SeungYongShim.ProtobufHelper
 {
     public class ProtoKnownTypes
     {
-        public ProtoKnownTypes()
+        public ProtoKnownTypes() : this(assembly =>
+        {
+            var name = assembly.GetName().Name;
+            return Regex.IsMatch(name, @"^Google.*") ||
+                   Regex.IsMatch(name, @"^Grpc.*") ||
+                   Regex.IsMatch(name, @"^xunit.*") ||
+                   Regex.IsMatch(name, @"^Microsoft.*") ||
+                   Regex.IsMatch(name, @"^System.*") ||
+                   Regex.IsMatch(name, @"^OpenTelemetry.*");
+        })
+        { }
+
+        public ProtoKnownTypes(Func<Assembly, bool> excludeFunc)
             : this(from assembly in AppDomain.CurrentDomain.GetAssemblies()
                    let name = assembly.GetName().Name
-                   where !Regex.IsMatch(name, @"^Google.*")
-                   where !Regex.IsMatch(name, @"^Grpc.*")
-                   where !Regex.IsMatch(name, @"^xunit.*")
-                   where !Regex.IsMatch(name, @"^Microsoft.*")
-                   where !Regex.IsMatch(name, @"^System.*")
-                   where !Regex.IsMatch(name, @"^OpenTelemetry.*")
+                   where !excludeFunc(assembly)
                    select assembly)
         {
-
-        }
-
-
-        public ProtoKnownTypes(IEnumerable<Type> types)
-            : this(from t in types
-                   select Assembly.GetAssembly(t))
-        {
-
         }
 
         public ProtoKnownTypes(IEnumerable<Assembly> assemblies)
