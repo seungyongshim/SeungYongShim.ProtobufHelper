@@ -12,7 +12,5 @@ namespace SeungYongShim.ProtobufHelper
             func(t);
             return t ;
         }
-
-
     }
 }

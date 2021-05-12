@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Google.Protobuf;
 using Google.Protobuf.Reflection;
-using static LanguageExt.Prelude;
+using static SeungYongShim.ProtobufHelper.FuntionalHelper;
 
 
 namespace SeungYongShim.ProtobufHelper
@@ -35,7 +35,8 @@ namespace SeungYongShim.ProtobufHelper
             var anyUnpackers =
                 from t in messageTypes
                 let typeAny = typeof(Google.Protobuf.WellKnownTypes.Any)
-                select (Key: $"type.googleapis.com/{t.Name}", Value: typeAny.GetGenericMethod("Unpack", new[] { t }));
+                select (Key: $"type.googleapis.com/{t.Name}", Value: typeAny.GetMethod("Unpack")
+                                                                            .MakeGenericMethod(t));
 
             var anyUnpackersDic = anyUnpackers.Select(x => (x.Key, Func: fun((Google.Protobuf.WellKnownTypes.Any a) =>
             {
@@ -43,8 +44,6 @@ namespace SeungYongShim.ProtobufHelper
             }))).ToDictionary(x => x.Key, x => x.Func);
 
             AnyUnpackersDic = anyUnpackersDic;
-
-
         }
 
         public IMessage Unpack(Google.Protobuf.WellKnownTypes.Any any)

@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json;
+using FluentAssertions;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Xunit;
@@ -28,9 +29,17 @@ namespace SeungYongShim.ProtobufHelper.Tests
 
             var parsedEvent = a.Unpack<KafkaEvent>();
 
-            var parsedEvent2 = knownTypes.Unpack(a);
+            var parsedEvent2 = knownTypes.Unpack(a) as KafkaEvent;
 
             var parsedSample = parsedEvent.Body.Unpack<Sample>();
+
+            var parsedSample2 = knownTypes.Unpack(parsedEvent2.Body);
+
+            parsedEvent.Should().Be(parsedEvent2);
+
+            parsedSample.Should().Be(parsedSample2);
+
+
         }
     }
 }

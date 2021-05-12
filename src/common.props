@@ -3,8 +3,8 @@
     <Copyright>Copyright © 2020-2021 </Copyright>
     <Authors>Seungyong Shim</Authors>
     <Version>0.0.0.000</Version>
-    <PackageProjectUrl>https://github.com/seungyongshim/ModificationHere</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/seungyongshim/ModificationHere/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/seungyongshim/SeungYongShim.ProtobufHelper</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/seungyongshim/SeungYongShim.ProtobufHelper/blob/master/LICENSE</PackageLicenseUrl>
     <NoWarn>$(NoWarn);CS1591;xUnit1013</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -16,7 +16,7 @@
   </ItemGroup>
   <PropertyGroup>
     <PackageIcon>icon.png</PackageIcon>
-    <RepositoryUrl>https://github.com/seungyongshim/ModificationHere</RepositoryUrl>
+    <RepositoryUrl>https://github.com/seungyongshim/SeungYongShim.ProtobufHelper</RepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
