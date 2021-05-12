@@ -11,15 +11,29 @@ namespace SeungYongShim.ProtobufHelper
 {
     public class KnownTypes
     {
-        public KnownTypes(IEnumerable<Type> types)
+        public KnownTypes()
+            : this(from assembly in AppDomain.CurrentDomain.GetAssemblies()
+                   select assembly)
         {
-            var messageTypes =
-                (from t in types
-                 let assembly = Assembly.GetAssembly(t)
-                 from type in assembly.GetTypes()
-                 where typeof(IMessage).IsAssignableFrom(type)
-                 where type.IsInterface is false
-                 select type).ToList();
+
+        }
+
+
+        public KnownTypes(IEnumerable<Type> types)
+            : this(from t in types
+                   select Assembly.GetAssembly(t))
+        {
+            
+        }
+
+        public KnownTypes(IEnumerable<Assembly> assemblies)
+        {
+            var messageTypes = (
+                from assembly in assemblies
+                from type in assembly.GetTypes()
+                where typeof(IMessage).IsAssignableFrom(type)
+                where type.IsInterface is false
+                select type).ToList();
 
             var descriptorAll =
                 from type in messageTypes

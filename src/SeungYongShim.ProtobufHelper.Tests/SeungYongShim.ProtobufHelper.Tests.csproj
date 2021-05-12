@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DtoSample\DtoSample.csproj" />
     <ProjectReference Include="..\SeungYongShim.ProtobufHelper\SeungYongShim.ProtobufHelper.csproj" />
   </ItemGroup>
 

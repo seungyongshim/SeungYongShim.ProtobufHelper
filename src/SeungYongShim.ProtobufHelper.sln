@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeungYongShim.ProtobufHelpe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeungYongShim.ProtobufHelper.Tests", "SeungYongShim.ProtobufHelper.Tests\SeungYongShim.ProtobufHelper.Tests.csproj", "{D5DB8193-2EF4-4A26-B92E-B619DED7D0CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DtoSample", "DtoSample\DtoSample.csproj", "{B8D9E1F9-AD9F-4BC1-9C28-833CA6AF1CC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D5DB8193-2EF4-4A26-B92E-B619DED7D0CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5DB8193-2EF4-4A26-B92E-B619DED7D0CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5DB8193-2EF4-4A26-B92E-B619DED7D0CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8D9E1F9-AD9F-4BC1-9C28-833CA6AF1CC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8D9E1F9-AD9F-4BC1-9C28-833CA6AF1CC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8D9E1F9-AD9F-4BC1-9C28-833CA6AF1CC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8D9E1F9-AD9F-4BC1-9C28-833CA6AF1CC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
