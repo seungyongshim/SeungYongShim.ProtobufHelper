@@ -55,14 +55,20 @@ namespace SeungYongShim.ProtobufHelper
 
             var anyUnpackers =
                 from t in messageTypes
-                select (Key: $"type.googleapis.com/{t.Name}", Value: typeof(Any).GetMethod("Unpack")
-                                                                                .MakeGenericMethod(t));
+                select (Key: $"type.googleapis.com/{GetDescriptorFullName(t)}",
+                        Value: typeof(Any).GetMethod("Unpack").MakeGenericMethod(t));
 
             var anyUnpackersDic = anyUnpackers.Select(x => (x.Key, Func: fun((Any a) => x.Value?.Invoke(a, null) as IMessage)))
                                               .ToDictionary(x => x.Key, x => x.Func);
 
             AnyUnpackersDic = anyUnpackersDic;
         }
+
+        internal string GetDescriptorFullName(Type t) =>
+            (t.GetProperty("Descriptor")
+              .GetGetMethod()?
+              .Invoke(null, null) as MessageDescriptor)
+              .FullName;
 
         public IMessage Unpack(Any any) => AnyUnpackersDic[any.TypeUrl](any);
 
