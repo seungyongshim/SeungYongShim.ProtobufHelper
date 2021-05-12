@@ -31,7 +31,7 @@ namespace SeungYongShim.ProtobufHelper
             : this(from t in types
                    select Assembly.GetAssembly(t))
         {
-            
+
         }
 
         public ProtoKnownTypes(IEnumerable<Assembly> assemblies)
@@ -67,7 +67,7 @@ namespace SeungYongShim.ProtobufHelper
         public IMessage Unpack(Any any) => AnyUnpackersDic[any.TypeUrl](any);
 
         internal Dictionary<string, Func<Any, IMessage>> AnyUnpackersDic { get; }
-        internal TypeRegistry Registry { get;  }
+        internal TypeRegistry Registry { get; }
         public JsonParser JsonParser { get; }
         public JsonFormatter JsonFormatter { get; }
     }

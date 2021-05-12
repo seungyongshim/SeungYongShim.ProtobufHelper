@@ -12,7 +12,7 @@ namespace SeungYongShim.ProtobufHelper.Tests
         [Fact]
         public void InsertType()
         {
-            var knownTypes = new KnownTypes(new[] { typeof(KafkaEvent) });
+            var knownTypes = new ProtoKnownTypes(new[] { typeof(KafkaEvent) });
 
             var @event = new KafkaEvent
             {
@@ -36,7 +36,7 @@ namespace SeungYongShim.ProtobufHelper.Tests
         [Fact]
         public void NotInsertType()
         {
-            var knownTypes = new KnownTypes();
+            var knownTypes = new ProtoKnownTypes();
 
             var @event = new KafkaCommand
             {
