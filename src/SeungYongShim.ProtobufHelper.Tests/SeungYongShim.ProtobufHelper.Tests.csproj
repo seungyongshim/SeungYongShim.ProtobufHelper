@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <None Remove="event.proto" />
-    <None Remove="sample.proto" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,12 +28,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DtoSample\DtoSample.csproj" />
+    <ProjectReference Include="..\Dto\Dto.csproj" />
     <ProjectReference Include="..\SeungYongShim.ProtobufHelper\SeungYongShim.ProtobufHelper.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Protobuf Include="event.proto" GrpcServices="None" />
-    <Protobuf Include="sample.proto" GrpcServices="None" />
   </ItemGroup>
 
 </Project>

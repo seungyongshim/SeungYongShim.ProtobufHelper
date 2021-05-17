@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-message Sample {
+message SampleDto {
    string ID = 1;
    repeated string Body = 2;
 }

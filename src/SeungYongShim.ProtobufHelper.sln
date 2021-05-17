@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeungYongShim.ProtobufHelper", "SeungYongShim.ProtobufHelper\SeungYongShim.ProtobufHelper.csproj", "{190D2056-54F1-444D-81F8-1B92BE008A4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeungYongShim.ProtobufHelper", "SeungYongShim.ProtobufHelper\SeungYongShim.ProtobufHelper.csproj", "{190D2056-54F1-444D-81F8-1B92BE008A4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeungYongShim.ProtobufHelper.Tests", "SeungYongShim.ProtobufHelper.Tests\SeungYongShim.ProtobufHelper.Tests.csproj", "{D5DB8193-2EF4-4A26-B92E-B619DED7D0CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeungYongShim.ProtobufHelper.Tests", "SeungYongShim.ProtobufHelper.Tests\SeungYongShim.ProtobufHelper.Tests.csproj", "{D5DB8193-2EF4-4A26-B92E-B619DED7D0CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DtoSample", "DtoSample\DtoSample.csproj", "{B8D9E1F9-AD9F-4BC1-9C28-833CA6AF1CC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DtoSample", "DtoSample\DtoSample.csproj", "{B8D9E1F9-AD9F-4BC1-9C28-833CA6AF1CC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dto", "Dto\Dto.csproj", "{39704843-1D8E-4784-BE3D-A51712ED2222}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{B8D9E1F9-AD9F-4BC1-9C28-833CA6AF1CC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8D9E1F9-AD9F-4BC1-9C28-833CA6AF1CC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8D9E1F9-AD9F-4BC1-9C28-833CA6AF1CC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39704843-1D8E-4784-BE3D-A51712ED2222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39704843-1D8E-4784-BE3D-A51712ED2222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39704843-1D8E-4784-BE3D-A51712ED2222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39704843-1D8E-4784-BE3D-A51712ED2222}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
