@@ -17,7 +17,7 @@ namespace SeungYongShim.ProtobufHelper.Tests
             var @event = new Event
             {
                 TraceId = "abcdefg",
-                Body = Any.Pack(from x in new Sample { ID = "abcdefg" }
+                Body = Any.Pack(from x in new SampleDto { ID = "abcdefg" }
                                 select x.Body.Add(new[] { "Hello", "World" }))
             };
 
@@ -27,7 +27,7 @@ namespace SeungYongShim.ProtobufHelper.Tests
 
             var parsedEvent = a.Unpack<Event>();
             var parsedEvent2 = knownTypes.Unpack(a) as Event;
-            var parsedSample = parsedEvent.Body.Unpack<Sample>();
+            var parsedSample = parsedEvent.Body.Unpack<SampleDto>();
             var parsedSample2 = knownTypes.Unpack(parsedEvent2.Body);
             parsedEvent.Should().Be(parsedEvent2);
             parsedSample.Should().Be(parsedSample2);
@@ -41,7 +41,7 @@ namespace SeungYongShim.ProtobufHelper.Tests
             var @event = new KafkaCommand
             {
                 TraceId = "abcdefg",
-                Body = Any.Pack(from x in new Sample { ID = "abcdefg" }
+                Body = Any.Pack(from x in new SampleDto { ID = "abcdefg" }
                                 select x.Body.Add(new[] { "Hello", "World" }))
             };
 
@@ -51,7 +51,7 @@ namespace SeungYongShim.ProtobufHelper.Tests
 
             var parsedEvent = a.Unpack<KafkaCommand>();
             var parsedEvent2 = knownTypes.Unpack(a) as KafkaCommand;
-            var parsedSample = parsedEvent.Body.Unpack<Sample>();
+            var parsedSample = parsedEvent.Body.Unpack<SampleDto>();
             var parsedSample2 = knownTypes.Unpack(parsedEvent2.Body);
             parsedEvent.Should().Be(parsedEvent2);
             parsedSample.Should().Be(parsedSample2);
