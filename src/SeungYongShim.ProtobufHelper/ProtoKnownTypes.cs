@@ -13,28 +13,17 @@ namespace SeungYongShim.ProtobufHelper
 {
     public class ProtoKnownTypes
     {
-        public ProtoKnownTypes() : this(assembly =>
-        {
-            var name = assembly.GetName().Name;
-            return Regex.IsMatch(name, @"^Google.*") ||
-                   Regex.IsMatch(name, @"^Grpc.*") ||
-                   Regex.IsMatch(name, @"^xunit.*") ||
-                   Regex.IsMatch(name, @"^Microsoft.*") ||
-                   Regex.IsMatch(name, @"^System.*") ||
-                   Regex.IsMatch(name, @"^OpenTelemetry.*");
-        })
-        { }
-
-        public static IEnumerable<Assembly> GetDtoAssemblies() =>
-            from filename in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*Dto*.dll", SearchOption.AllDirectories)
-            select Assembly.LoadFrom(filename);
-
-        public ProtoKnownTypes(Func<Assembly, bool> excludeFunc)
+        public ProtoKnownTypes(params string[] searchPatterns)
             : this(from assemblies in new[] { AppDomain.CurrentDomain.GetAssemblies(),
-                                              GetDtoAssemblies() }
+                                              GetAssemblies(searchPatterns) }
                    from assembly in assemblies
                    let name = assembly?.GetName().Name
-                   where !excludeFunc(assembly)
+                   where !Regex.IsMatch(name, @"^Google.*") ||
+                         !Regex.IsMatch(name, @"^Grpc.*") ||
+                         !Regex.IsMatch(name, @"^xunit.*") ||
+                         !Regex.IsMatch(name, @"^Microsoft.*") ||
+                         !Regex.IsMatch(name, @"^System.*") ||
+                         !Regex.IsMatch(name, @"^OpenTelemetry.*")
                    select assembly)
         {
         }
@@ -69,6 +58,11 @@ namespace SeungYongShim.ProtobufHelper
             AnyUnpackersDic = anyUnpackersDic;
         }
 
+        internal static IEnumerable<Assembly> GetAssemblies(IEnumerable<string> searchPatterns) =>
+            from searchPattern in searchPatterns.Append("*Dto*.dll")
+            from filename in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, searchPattern, SearchOption.AllDirectories)
+            select Assembly.LoadFrom(filename);
+
         internal string GetDescriptorFullName(Type t) =>
             (t.GetProperty("Descriptor")
               .GetGetMethod()?
@@ -81,33 +75,5 @@ namespace SeungYongShim.ProtobufHelper
         internal TypeRegistry Registry { get; }
         public JsonParser JsonParser { get; }
         public JsonFormatter JsonFormatter { get; }
-
-        internal static IEnumerable<Assembly> GetAllAssemblies()
-        {
-            var list = new List<string>();
-            var stack = new Stack<Assembly>();
-
-            foreach (var item in AppDomain.CurrentDomain.GetAssemblies())
-            {
-                stack.Push(item);
-            }
-            
-            do
-            {
-                var asm = stack.Pop();
-
-                yield return asm;
-
-                foreach (var reference in asm.GetReferencedAssemblies())
-                {
-                    if (!list.Contains(reference.FullName))
-                    {
-                        stack.Push(Assembly.Load(reference));
-                        list.Add(reference.FullName);
-                    }
-                }
-            }
-            while (stack.Count > 0);
-        }
     }
 }
